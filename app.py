@@ -110,11 +110,12 @@ if submitted:
 st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("""
 <div style='text-align:center; color:gray; font-size:15px;'>
-Developed with ❤️ by <b>Udit Bhatt™</b><br>
+Developed with by <b>Udit Bhatt™</b><br>
 <small>© 2025 | Machine Learning Project</small><br>
 <small>Powered by <b style='color:#FF4B4B;'>XGBoost</b> + <b style='color:#FF4B4B;'>LightGBM</b> Ensemble Model</small><br><br>
 <b style='color:#FF4B4B;'>👨🏻‍⚕️ Thank you for visiting! Come back soon!⚕️</b>
 </div>
 """, unsafe_allow_html=True)
+
 
 
