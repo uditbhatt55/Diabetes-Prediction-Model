@@ -22,7 +22,11 @@ st.markdown("""
 col1, col2 = st.columns([1.2, 1])
 
 with col1:
-    st.subheader("Enter Patient Medical Information")
+    st.markdown(
+    "<h2 style='font-size:30px; font-weight:800; color:#000; margin-top:-10px;'> Enter Patient Medical Information</h2>",
+    unsafe_allow_html=True
+)
+
 
     # --- Gender Dropdown ---
     gender = st.selectbox(
@@ -162,47 +166,6 @@ if submitted:
 
     st.plotly_chart(fig_prob, use_container_width=True, key="prob_chart")
     
-    # --- Interactive Star Rating System ---
-st.markdown("""
-<style>
-.star-container {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-.star {
-    font-size: 30px;
-    color: #ccc;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-.star:hover {
-    color: gold;
-}
-</style>
-""", unsafe_allow_html=True)
-
-# --- Create columns for stars ---
-cols = st.columns(5)
-if 'rating' not in st.session_state:
-    st.session_state.rating = 0
-
-for i, col in enumerate(cols, start=1):
-    if col.button("⭐", key=f"star_{i}"):
-        st.session_state.rating = i
-
-# --- Display stars dynamically ---
-st.markdown(
-    f"<div class='star-container'>{''.join(['<span class=\"star\" style=\"color:gold;\">⭐</span>' if i <= st.session_state.rating else '<span class=\"star\">⭐</span>' for i in range(1,6)])}</div>",
-    unsafe_allow_html=True
-)
-
-# --- Pop-up box when user rates ---
-if st.session_state.rating > 0:
-    with st.expander("🌟 Please rate us"):
-        st.success(f"Thank you for rating {st.session_state.rating} out of 5 stars! 💖")
-        st.write("Your feedback helps us improve this app further.")
-
 
 st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("""
@@ -221,4 +184,21 @@ This app is intended for educational and informational purposes only.
 </div>
 <hr>
 """, unsafe_allow_html=True)
+
+# --- Simple Rating Section Below Footer ---
+st.markdown("<br><hr>", unsafe_allow_html=True)
+st.subheader("🌟 Please Rate Us")
+
+rating_value = st.number_input(
+    "Rate this app (1 to 5)",
+    min_value=1,
+    max_value=5,
+    value=5,
+    step=1,
+    help="Use + or - to set your rating (1 = Poor, 5 = Excellent)"
+)
+
+if st.button("Submit Rating"):
+    st.success(f"✅ Thank you for rating {rating_value} out of 5 stars!")
+    st.balloons()
 
