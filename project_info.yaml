@@ -1,0 +1,135 @@
+project:
+  title: "Diabetes Prediction Model"
+  description: >
+    A Machine Learning project that predicts whether a person is likely to have diabetes
+    based on medical and demographic factors such as glucose levels, BMI, blood pressure,
+    insulin, and age. The project is trained using ensemble learning (XGBoost + LightGBM)
+    and deployed as a Streamlit web application for real-time user interaction.
+  author: "Udit Bhatt™"
+  affiliation: "B.Tech Student | Machine Learning Enthusiast"
+  license: "MIT License"
+  created_on: "2025-11-11"
+  updated_on: "2025-11-11"
+  version: "1.0.0"
+  live_demo_url: "https://diabetes-prediction-model-mmfbdalzljyhedmnd8ctlg.streamlit.app"
+  github_repo: "https://github.com/uditbhatt55/Diabetes-Prediction-Model"
+
+dataset:
+  name: "PIMA Indians Diabetes Database"
+  source: "Kaggle"
+  source_url: "https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database"
+  total_records: 768
+  features:
+    - Pregnancies
+    - Glucose
+    - BloodPressure
+    - SkinThickness
+    - Insulin
+    - BMI
+    - DiabetesPedigreeFunction
+    - Age
+  target_variable: "Outcome"
+  target_description:
+    0: "Non-Diabetic"
+    1: "Diabetic"
+  preprocessing:
+    missing_value_strategy: "Replaced 0s in physiological features with median values"
+    scaling: "StandardScaler (from scikit-learn)"
+    outlier_handling: "Winsorizing + selective feature cleaning"
+    data_split:
+      train_test_ratio: "80:20"
+      random_state: 42
+    balancing: "SMOTE (Synthetic Minority Oversampling Technique)"
+
+models:
+  description: "Multiple ML algorithms were trained, tuned, and compared."
+  algorithms:
+    - Logistic Regression
+    - K-Nearest Neighbors (KNN)
+    - Random Forest Classifier
+    - AdaBoost Classifier
+    - Gradient Boosting Classifier
+    - XGBoost Classifier
+    - LightGBM Classifier
+  ensemble_strategy: "Soft Voting / Averaging of XGBoost and LightGBM probabilities"
+  final_model: 
+    name: "XGBoost + LightGBM Ensemble"
+    accuracy: 0.773
+    roc_auc: 0.830
+    recall: 0.70
+    precision: 0.67
+    f1_score: 0.68
+    key_features:
+      - Glucose
+      - BMI
+      - Age
+      - Insulin
+      - DiabetesPedigreeFunction
+
+deployment:
+  platform: "Streamlit Cloud"
+  dependencies:
+    - Python 3.11
+    - pandas
+    - numpy
+    - scikit-learn
+    - xgboost
+    - lightgbm
+    - imbalanced-learn
+    - matplotlib
+    - seaborn
+    - plotly
+    - streamlit
+    - joblib
+  main_script: "app.py"
+  visualization_libraries: "Plotly for gauge charts and probability graphs"
+  configuration_files:
+    - ".streamlit/config.toml"
+    - "requirements.txt"
+    - "README.md"
+  output:
+    prediction_label: "Diabetic / Non-Diabetic"
+    probability_score: "Continuous between 0 and 1"
+    ui_feedback:
+      - Success (Green): Low risk
+      - Error (Red): High risk
+
+ui_features:
+  frontend_framework: "Streamlit"
+  design_theme: "Custom - Light with red and blue accents"
+  input_fields:
+    - Pregnancies: "Number input"
+    - Glucose: "Number input"
+    - BloodPressure: "Number input"
+    - SkinThickness: "Number input"
+    - Insulin: "Number input"
+    - BMI: "Float input"
+    - DiabetesPedigreeFunction: "Float input"
+    - Age: "Number input"
+  output_elements:
+    - Prediction label (Diabetic / Non-Diabetic)
+    - Probability gauge chart
+    - Model accuracy metrics (Accuracy, ROC-AUC)
+  footer:
+    message: "Developed with by Udit Bhatt™ | © 2025"
+    contact_email: "contact@example.com"
+
+instructions:
+  run_locally:
+    - "Clone the repository using: git clone https://github.com/uditbhatt55/Diabetes-Prediction-Model.git"
+    - "Navigate into the project folder: cd Diabetes-Prediction-Model"
+    - "Install all dependencies: pip install -r requirements.txt"
+    - "Run the app: streamlit run app.py"
+  deploy_to_streamlit:
+    - "Push the project to GitHub"
+    - "Sign in to https://share.streamlit.io using GitHub"
+    - "Select repository: uditbhatt55/Diabetes-Prediction-Model"
+    - "Set branch: main and main file path: app.py"
+    - "Click Deploy"
+
+acknowledgements:
+  - "Dataset: PIMA Indians Diabetes Database (Kaggle)"
+  - "Framework: Streamlit"
+  - "Libraries: Scikit-learn, XGBoost, LightGBM, Plotly"
+  - "Author: Udit Bhatt™"
+  - "Year: 2025"
