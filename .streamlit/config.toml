@@ -1,0 +1,7 @@
+[theme]
+base = "light"
+primaryColor = "#0066CC"             # blue accent color
+backgroundColor = "#F5F7FA"          # light gray background
+secondaryBackgroundColor = "#FFFFFF" # white boxes
+textColor = "#000000"
+font = "serif"
