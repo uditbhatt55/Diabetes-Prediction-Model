@@ -161,6 +161,48 @@ if submitted:
     fig_prob.update_layout(showlegend=False, xaxis_title="%", yaxis_title=None)
 
     st.plotly_chart(fig_prob, use_container_width=True, key="prob_chart")
+    
+    # --- Interactive Star Rating System ---
+st.markdown("""
+<style>
+.star-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.star {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.star:hover {
+    color: gold;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# --- Create columns for stars ---
+cols = st.columns(5)
+if 'rating' not in st.session_state:
+    st.session_state.rating = 0
+
+for i, col in enumerate(cols, start=1):
+    if col.button("⭐", key=f"star_{i}"):
+        st.session_state.rating = i
+
+# --- Display stars dynamically ---
+st.markdown(
+    f"<div class='star-container'>{''.join(['<span class=\"star\" style=\"color:gold;\">⭐</span>' if i <= st.session_state.rating else '<span class=\"star\">⭐</span>' for i in range(1,6)])}</div>",
+    unsafe_allow_html=True
+)
+
+# --- Pop-up box when user rates ---
+if st.session_state.rating > 0:
+    with st.expander("🌟 Please rate us"):
+        st.success(f"Thank you for rating {st.session_state.rating} out of 5 stars! 💖")
+        st.write("Your feedback helps us improve this app further.")
+
 
 st.markdown("<hr>", unsafe_allow_html=True)
 st.markdown("""
@@ -179,44 +221,4 @@ This app is intended for educational and informational purposes only.
 </div>
 <hr>
 """, unsafe_allow_html=True)
-
-# --- User Rating Section (bottom-right corner) ---
-st.markdown("""
-<style>
-.rating-box {
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
-    background-color: #f8f9fa;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-    text-align: center;
-    width: 220px;
-    z-index: 100;
-}
-.rating-title {
-    font-weight: bold;
-    color: #333;
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-</style>
-<div class='rating-box'>
-    <div class='rating-title'>🌟 Please Rate Us</div>
-</div>
-""", unsafe_allow_html=True)
-
-# --- Interactive Rating Stars ---
-rating = st.slider(
-    "How would you rate this app?",
-    1, 5, 5,
-    key="rating_slider",
-    help="Rate from 1 (Poor) to 5 (Excellent)"
-)
-st.markdown(f"**You rated this app:** ⭐ {rating}/5")
-
-
-
 
