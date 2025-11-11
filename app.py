@@ -22,7 +22,7 @@ st.markdown("""
 col1, col2 = st.columns([1.2, 1])
 
 with col1:
-    st.subheader("🧠 Enter Patient Medical Information")
+    st.subheader("Enter Patient Medical Information")
 
     # --- Gender Selection ---
     gender = st.radio(
